@@ -32,7 +32,6 @@ const Client = sequelize.define('Client', {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    // Внешний ключ для пользователя (менеджера)
     manager_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
@@ -45,7 +44,6 @@ const Client = sequelize.define('Client', {
     tableName: 'clients',
 });
 
-// Определяем связь: один клиент может принадлежать менеджеру (User)
 Client.belongsTo(User, { foreignKey: 'manager_id', as: 'manager' });
 
 module.exports = Client
