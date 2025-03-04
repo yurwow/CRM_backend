@@ -10,8 +10,8 @@ const usersRouter = require('./routes/usersRouter')
 const authRouter = require('./routes/authRouter')
 const authMiddleware = require('./middleware/authMiddleware')
 
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api/auth', authRouter)

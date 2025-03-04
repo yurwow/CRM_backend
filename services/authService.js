@@ -36,7 +36,7 @@ class authService {
         }
 
         const payload = { id: user.id, email: user.email, role: user.role };
-        const accessToken = jwt.sign(payload, accessKey, { expiresIn: '15m' });
+        const accessToken = jwt.sign(payload, accessKey, { expiresIn: '7d' });
         const refreshToken = jwt.sign(payload, refreshKey, { expiresIn: '7d' });
 
         await user.update({ refresh_token: refreshToken });
@@ -60,7 +60,7 @@ class authService {
         }
 
         const newPayload = { id: user.id, email: user.email, role: user.role };
-        const accessToken = jwt.sign(newPayload, accessKey, { expiresIn: '15m' });
+        const accessToken = jwt.sign(newPayload, accessKey, { expiresIn: '7d' });
         const refreshToken = jwt.sign(newPayload, refreshKey, { expiresIn: '7d' });
         await user.update({ refresh_token: refreshToken });
 

@@ -18,13 +18,7 @@ class authController {
             const { email, password } = req.body;
             const tokens = await authService.login({ email, password });
 
-            res.cookie('refreshToken', tokens.refreshToken, {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
-                sameSite: 'Strict',
-                maxAge: 7 * 24 * 60 * 60 * 1000
-            })
-            res.json({ accessToken: tokens.accessToken });
+            res.json({ accessToken: tokens.accessToken, refreshToken: tokens.refreshToken });
         } catch (err) {
             console.error(err);
             res.status(err.message.includes('Неверный') ? 400 : 500)
@@ -34,15 +28,10 @@ class authController {
 
     static async refresh(req, res) {
         try {
-            const { refreshToken } = req.cookies;
+            const { refreshToken } = req.body;
             const tokens = await authService.refresh(refreshToken);
-            res.cookie('refreshToken', tokens.refreshToken, {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
-                sameSite: 'Strict',
-                maxAge: 7 * 24 * 60 * 60 * 1000
-            });
-            res.json({ accessToken: tokens.accessToken });
+
+            res.json({ accessToken: tokens.accessToken, refreshToken: tokens.refreshToken });
         } catch (err) {
             console.error(err);
             res.status(403).json({ error: err.message || 'Недействительный токен' });
@@ -50,10 +39,15 @@ class authController {
     }
 
     static async logout(req, res) {
+        console.log(req.body);
         try {
-            const { refreshToken } = req.cookies;
+            const { refreshToken } = req.body;
+            if (!refreshToken) {
+                return res.status(400).json({ error: "Токен отсутствует" });
+            }
+
             await authService.logout(refreshToken);
-            res.clearCookie('refreshToken');
+
             res.json({ message: 'Вы вышли из системы' });
         } catch (err) {
             console.error(err);
