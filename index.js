@@ -8,7 +8,9 @@ const clientsRouter = require('./routes/clientsRouter')
 const interactionRouter = require('./routes/interactionRouter')
 const usersRouter = require('./routes/usersRouter')
 const authRouter = require('./routes/authRouter')
+const statisticsRouter = require('./routes/statisticsRouter')
 const authMiddleware = require('./middleware/authMiddleware')
+const setupSwagger = require("./swagger");
 
 app.use(cors());
 app.use(express.json());
@@ -17,7 +19,10 @@ app.use(cookieParser());
 app.use('/api/auth', authRouter)
 app.use('/api/clients', authMiddleware, clientsRouter)
 app.use('/api/interactions',authMiddleware ,interactionRouter)
-// app.use('/api/users', usersRouter)
+app.use('/api/users', usersRouter)
+app.use('/api/statistics', statisticsRouter)
+
+setupSwagger(app);
 
 sequelize
     .sync({ alter: true })
