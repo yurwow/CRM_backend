@@ -11,7 +11,7 @@ const User = require('../models/User');
 
 /**
  * @swagger
- * /users:
+ * /api/users:
  *   get:
  *     summary: Получить всех пользователей
  *     tags: [Users]

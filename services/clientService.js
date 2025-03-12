@@ -1,4 +1,4 @@
-const { Client } = require('../models')
+const { Client , Interaction} = require('../models')
 
 class ClientService {
     static async getAllClients() {
@@ -45,6 +45,10 @@ class ClientService {
         if (!client) {
             return null;
         }
+        await Interaction.destroy({
+            where: { client_id: id }
+        });
+
         await client.destroy();
         return client;
     }
