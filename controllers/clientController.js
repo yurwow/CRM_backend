@@ -1,10 +1,10 @@
-const ClientService = require('../services/clientService')
+const ClientService = require('../services/clientService');
 
 class ClientController {
     static async getAll(req, res) {
         try {
-            const clients = await ClientService.getAllClients()
-            res.json(clients)
+            const clients = await ClientService.getAllClients();
+            res.json(clients);
         } catch (err) {
             console.error(err);
             res.status(500).json({ error: 'Ошибка сервера' });
@@ -13,8 +13,8 @@ class ClientController {
 
     static async getById(req, res) {
         try {
-            const client = await ClientService.getClientById(req.params.id)
-            res.json(client)
+            const client = await ClientService.getClientById(req.params.id);
+            res.json(client);
         } catch (err) {
             console.error(err);
             res.status(500).json({ error: 'Ошибка сервера' });
@@ -36,7 +36,7 @@ class ClientController {
             if (!updateClient) {
                 return res.status(404).json({ error: 'Клиент не найден' });
             }
-            res.json(updateClient)
+            res.json(updateClient);
         } catch (err) {
             console.error(err);
             res.status(500).json({ error: 'Ошибка сервера' });
@@ -48,7 +48,7 @@ class ClientController {
             if (!deletedClient) {
                 return res.status(404).json({ error: 'Клиент не найден' });
             }
-            res.json({message: 'Клиент удалён'})
+            res.json({ message: 'Клиент удалён' });
         } catch (err) {
             console.error(err);
             res.status(500).json({ error: 'Ошибка сервера' });

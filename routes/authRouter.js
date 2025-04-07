@@ -11,7 +11,7 @@ const authController = require('../controllers/authController');
 
 /**
  * @swagger
- * /auth/register:
+ * /api/auth/register:
  *   post:
  *     summary: Регистрация пользователя
  *     tags: [Auth]
@@ -49,7 +49,7 @@ authRouter.post('/register', authController.register);
 
 /**
  * @swagger
- * /auth/login:
+ * /api/auth/login:
  *   post:
  *     summary: Авторизация пользователя
  *     tags: [Auth]
@@ -81,14 +81,17 @@ authRouter.post('/register', authController.register);
  *                   type: string
  *                 refreshToken:
  *                   type: string
+ *                 role:
+ *                   type: string
  *       400:
  *         description: Неверный email или пароль
  */
+
 authRouter.post('/login', authController.login);
 
 /**
  * @swagger
- * /auth/refresh:
+ * /api/auth/refresh:
  *   post:
  *     summary: Обновление access-токена
  *     tags: [Auth]
@@ -114,7 +117,7 @@ authRouter.post('/refresh', authController.refresh);
 
 /**
  * @swagger
- * /auth/logout:
+ * /api/auth/logout:
  *   post:
  *     summary: Выход из системы
  *     tags: [Auth]

@@ -33,7 +33,7 @@ usersRouter.get('/', async (req, res) => {
 
 /**
  * @swagger
- * /users/{id}:
+ * api/users/{id}:
  *   get:
  *     summary: Получить пользователя по ID
  *     tags: [Users]
@@ -65,7 +65,7 @@ usersRouter.get('/:id', async (req, res) => {
 
 /**
  * @swagger
- * /users:
+ * api/users:
  *   post:
  *     summary: Создать нового пользователя
  *     tags: [Users]
@@ -103,7 +103,7 @@ usersRouter.post('/', async (req, res) => {
 
 /**
  * @swagger
- * /users/{id}:
+ * api/users/{id}:
  *   put:
  *     summary: Обновить пользователя по ID
  *     tags: [Users]
@@ -154,7 +154,7 @@ usersRouter.put('/:id', async (req, res) => {
 
 /**
  * @swagger
- * /users/{id}:
+ * api/users/{id}:
  *   delete:
  *     summary: Удалить пользователя по ID
  *     tags: [Users]

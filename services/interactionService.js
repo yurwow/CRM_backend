@@ -4,13 +4,13 @@ class InteractionService {
     static async getAllInteractions() {
         return await Interaction.findAll({
             include: [{ model: Client, as: 'client' }],
-        })
+        });
     }
 
     static async getInteractionById(id) {
         return await Interaction.findByPk(id, {
             include: [{ model: Client, as: 'client' }],
-        })
+        });
     }
 
     static async getInteractionsByClientId(clientId) {

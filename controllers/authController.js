@@ -8,8 +8,7 @@ class authController {
             res.status(201).json({ message: 'Пользователь создан', user: newUser });
         } catch (err) {
             console.error(err);
-            res.status(err.message.includes('Пользователь') ? 400 : 500)
-                .json({ error: err.message || 'Ошибка сервера' });
+            res.status(err.message.includes('Пользователь') ? 400 : 500).json({ error: err.message || 'Ошибка сервера' });
         }
     }
 
@@ -18,11 +17,10 @@ class authController {
             const { email, password } = req.body;
             const tokens = await authService.login({ email, password });
 
-            res.json({ accessToken: tokens.accessToken, refreshToken: tokens.refreshToken });
+            res.json({ accessToken: tokens.accessToken, refreshToken: tokens.refreshToken, role: tokens.role });
         } catch (err) {
             console.error(err);
-            res.status(err.message.includes('Неверный') ? 400 : 500)
-                .json({ error: err.message || 'Ошибка сервера' });
+            res.status(err.message.includes('Неверный') ? 400 : 500).json({ error: err.message || 'Ошибка сервера' });
         }
     }
 
@@ -43,7 +41,7 @@ class authController {
         try {
             const { refreshToken } = req.body;
             if (!refreshToken) {
-                return res.status(400).json({ error: "Токен отсутствует" });
+                return res.status(400).json({ error: 'Токен отсутствует' });
             }
 
             await authService.logout(refreshToken);

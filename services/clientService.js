@@ -1,4 +1,4 @@
-const { Client , Interaction} = require('../models')
+const { Client, Interaction } = require('../models');
 
 class ClientService {
     static async getAllClients() {
@@ -6,7 +6,7 @@ class ClientService {
     }
 
     static async getClientById(id) {
-        return await Client.findByPk(id)
+        return await Client.findByPk(id);
     }
 
     static async createClient(data) {
@@ -46,7 +46,7 @@ class ClientService {
             return null;
         }
         await Interaction.destroy({
-            where: { client_id: id }
+            where: { client_id: id },
         });
 
         await client.destroy();

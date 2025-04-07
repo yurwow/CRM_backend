@@ -3,24 +3,24 @@ const InteractionService = require('../services/interactionService');
 class InteractionController {
     static async getAll(req, res) {
         try {
-            const interactions = await InteractionService.getAllInteractions()
-            res.json(interactions)
+            const interactions = await InteractionService.getAllInteractions();
+            res.json(interactions);
         } catch (err) {
-            console.error(err)
-            res.status(500).json({error: 'Ошибка на сервере'})
+            console.error(err);
+            res.status(500).json({ error: 'Ошибка на сервере' });
         }
     }
 
     static async getById(req, res) {
         try {
-            const interaction = await InteractionService.getInteractionById(req.params.id)
+            const interaction = await InteractionService.getInteractionById(req.params.id);
             if (!interaction) {
                 return res.status(404).json({ error: 'Взаимодействие не найдено' });
             }
-            res.json(interaction)
+            res.json(interaction);
         } catch (err) {
-            console.error(err)
-            res.status(500).json({error: 'Ошибка на сервере'})
+            console.error(err);
+            res.status(500).json({ error: 'Ошибка на сервере' });
         }
     }
 
@@ -37,21 +37,21 @@ class InteractionController {
 
     static async create(req, res) {
         try {
-            const createInteraction = await InteractionService.createInteraction(req.body)
-            res.json(createInteraction)
+            const createInteraction = await InteractionService.createInteraction(req.body);
+            res.json(createInteraction);
         } catch (err) {
-            console.error(err)
-            res.status(500).json({error: 'Ошибка на сервере'})
+            console.error(err);
+            res.status(500).json({ error: 'Ошибка на сервере' });
         }
     }
 
     static async update(req, res) {
         try {
-            const updateInteraction = await InteractionService.updateInteraction(req.params.id, req.body)
-            res.json(updateInteraction)
+            const updateInteraction = await InteractionService.updateInteraction(req.params.id, req.body);
+            res.json(updateInteraction);
         } catch (err) {
-            console.error(err)
-            res.status(500).json({error: 'Ошибка на сервере'})
+            console.error(err);
+            res.status(500).json({ error: 'Ошибка на сервере' });
         }
     }
 
@@ -60,8 +60,8 @@ class InteractionController {
             const deleteInteraction = await InteractionService.deleteInteraction(req.params.id);
             res.json(deleteInteraction);
         } catch (err) {
-            console.error(err)
-            res.status(500).json({error: 'Ошибка на сервере'})
+            console.error(err);
+            res.status(500).json({ error: 'Ошибка на сервере' });
         }
     }
 }
