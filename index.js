@@ -8,6 +8,8 @@ const clientsRouter = require('./routes/clientsRouter');
 const interactionRouter = require('./routes/interactionRouter');
 const usersRouter = require('./routes/usersRouter');
 const authRouter = require('./routes/authRouter');
+const contractorsRouter = require('./routes/contractors');
+const reviewsRouter = require('./routes/reviews');
 const statisticsRouter = require('./routes/statisticsRouter');
 const authMiddleware = require('./middleware/authMiddleware');
 const setupSwagger = require('./swagger');
@@ -21,6 +23,8 @@ app.use('/api/clients', authMiddleware, clientsRouter);
 app.use('/api/interactions', authMiddleware, interactionRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/statistics', authMiddleware, statisticsRouter);
+app.use('/api/contractors', contractorsRouter);
+app.use('/api/reviews', reviewsRouter);
 
 setupSwagger(app);
 

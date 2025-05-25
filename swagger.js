@@ -5,7 +5,7 @@ const options = {
     definition: {
         openapi: '3.0.0',
         info: {
-            title: 'API Documentation',
+            title: 'REST API Документация CRM Clients',
             version: '1.0.0',
         },
     },

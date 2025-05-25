@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../config/db');
+const ContractorReview = require('./ContractorReview');
 
 const User = sequelize.define(
     'User',
@@ -35,5 +36,7 @@ const User = sequelize.define(
         tableName: 'users',
     },
 );
+
+User.hasMany(ContractorReview, { foreignKey: 'author_id' });
 
 module.exports = User;
