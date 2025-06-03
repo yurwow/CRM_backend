@@ -23,8 +23,8 @@ app.use('/api/clients', authMiddleware, clientsRouter);
 app.use('/api/interactions', authMiddleware, interactionRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/statistics', authMiddleware, statisticsRouter);
-app.use('/api/contractors', contractorsRouter);
-app.use('/api/reviews', reviewsRouter);
+app.use('/api/contractors', authMiddleware, contractorsRouter);
+app.use('/api/reviews', authMiddleware, reviewsRouter);
 
 setupSwagger(app);
 
